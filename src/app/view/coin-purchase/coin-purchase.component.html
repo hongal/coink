@@ -1,0 +1,88 @@
+<div fxLayout="column" fxLayoutGap="12px">
+  <!--구매창-->
+  <div style="background-color: white" fxFlex="1 1 40">
+    <div fxLayout="row" >
+      <div [className]="buyTab === 1 ? 'tab-active' : 'primary-tab'"
+           fxFlex="50" (click)="buyTabChange(1)">
+        <span>매수</span>
+      </div>
+      <div [className]="buyTab === 2 ? 'tab-active' : 'primary-tab'"
+           fxFlex="50" (click)="buyTabChange(2)">
+        <span>매도</span>
+      </div>
+      <div [className]="buyTab === 3 ? 'tab-active' : 'primary-tab'"
+           fxFlex="50" (click)="buyTabChange(3)">
+        <span>거래내역</span>
+      </div>
+    </div>
+    <!--매수-->
+    <div class="purchase-container" *ngIf="buyTab === 1 || buyTab === 2"
+         fxLayout="column" fxLayoutGap="12px">
+      <h2>{{titleText}}</h2>
+      <div class="purchase-table">
+        <div class="purchase-row" fxLayout="row">
+          <div class="purchase-left-cell" fxLayout="column">
+            주문가능
+          </div>
+          <div class="purchase-right-cell" fxLayout="column">
+
+          </div>
+        </div>
+        <div class="purchase-row" fxLayout="row">
+          <div class="purchase-left-cell" fxLayout="column">
+            가격
+            <span>(KRW)</span>
+          </div>
+          <div class="purchase-right-cell" fxLayout="column"></div>
+        </div>
+        <div class="purchase-row" fxLayout="row">
+          <div class="purchase-left-cell" fxLayout="column">
+            수량
+            <span>(BTC)</span>
+          </div>
+          <div class="purchase-right-cell" fxLayout="column"></div>
+        </div>
+        <div class="purchase-row" fxLayout="row" style="background-color: #f4f5f8">
+          <div class="purchase-left-cell" fxLayout="column">
+            <h2>
+              주문총액
+            </h2>
+          </div>
+          <div class="purchase-right-cell" fxLayout="column">
+            <input>
+          </div>
+        </div>
+        <div class="purchase-row" fxLayout="row">
+          <div class="purchase-left-cell" fxLayout="column">
+          </div>
+          <div class="purchase-right-cell" fxLayout="column">
+           <span >
+            · 최소주문금액: 1000 KRW· 수수료(부가세 포함): 0.05%
+           </span>
+          </div>
+        </div>
+        <div class="purchase-row" fxLayout="row" fxLayoutGap="12px">
+          <div id="signin-button" class="purchase-left-cell" fxLayout="column">
+            <a>회원가입</a>
+          </div>
+          <div id="login-button" class="purchase-right-cell" fxLayout="column">
+            <a>로그인</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--거래내역-->
+    <div *ngIf="buyTab === 3" class="purchase-container" fxLayout="column">
+      <h2>{{titleText}}</h2>
+      <span>로그인이 필요합니다</span>
+      <div fxLayout="row">
+
+      </div>
+    </div>
+  </div>
+
+  <!--시세표-->
+  <div id="purchase-chart" class="purchase-container" fxFlex="1 1 60" fxHide>
+
+  </div>
+</div>

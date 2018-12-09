@@ -1,0 +1,58 @@
+<!--//호가 탭-->
+<div fxLayout="column" >
+  <div fxLayout="row" style="background-color: white">
+    <div [className]="priceTab === 1 ? 'tab-active' : 'primary-tab'"
+         fxFlex="50" (click)="priceTabChange(1)">
+      <span>누적호과</span>
+    </div>
+    <div [className]="priceTab === 2 ? 'tab-active' : 'primary-tab'"
+         fxFlex="50" (click)="priceTabChange(2)">
+      <span>일반호가</span>
+    </div>
+    <div [className]="priceTab === 3 ? 'tab-active' : 'primary-tab'"
+         fxFlex="50" (click)="priceTabChange(3)">
+      <span>호가주문</span>
+    </div>
+  </div >
+  <!--일반호가-->
+  <div *ngIf="priceTab === 2">
+
+  </div>
+  <!--누적호과-->
+  <div *ngIf="priceTab === 1">
+    <div class="price-table" fxLayout="column">
+      <div class="price-table-header" fxLayout="row">
+        <div class="price-cell" fxFlex="1 1 40" fxLayout="column"></div>
+        <div class="price-cell" fxFlex="1 1 20" fxLayout="column">
+          수량<span></span>
+        </div>
+        <div class="price-cell" fxFlex="1 1 20" fxLayout="column">
+          금액<span>(KRW)</span>
+        </div>
+        <div class="price-cell" fxFlex="1 1 20" fxLayout="column">
+          누적
+          <span>(KRW)</span>
+        </div>
+      </div>
+      <ng-scrollbar #scrollable
+                    thumbClass="custom-scrollbars">
+        <div class="price-table-body" fxLayout="column" >
+          <div class="price-row" *ngFor="let price of priceList" fxLayout="row">
+            <div class="price-cell"  fxFlex="1 1 40" fxLayout="column">
+              {{price.tradePrice}}
+            </div>
+            <div class="price-cell"  fxFlex="1 1 20" fxLayout="column">
+              {{(price.prevClosingPrice - price.tradePrice) / price.tradePrice * 100 | number: '1.1-2'}}%
+            </div>
+            <div class="price-cell"  fxFlex="1 1 20" fxLayout="column"></div>
+            <div class="price-cell"  fxFlex="1 1 20" fxLayout="column"></div>
+          </div>
+        </div>
+      </ng-scrollbar>
+    </div>
+  </div>
+  <!--호가주문-->
+  <div *ngIf="priceTab === 3">
+  </div>
+
+</div>

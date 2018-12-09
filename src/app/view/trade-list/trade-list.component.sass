@@ -1,0 +1,73 @@
+@import "~src/assets/css/tab"
+@import "~src/assets/css/table"
+@import "~src/assets/css/text"
+//탭 클릭시 css
+//%active-tab
+//  border-bottom: 3px solid #115dcb
+//  color: #115dcb
+//  font-weight: 700
+//  cursor: pointer
+//  justify-content: center
+
+%table-cell
+  text-align: right
+  display: table-cell
+  vertical-align: middle
+
+  //상단 탭
+.trade_tab
+  @extend %normal-tab
+  &:hover
+    @extend %active-tab
+
+    //탭 클릭시
+.trade_tab_active
+  @extend %active-tab
+
+#trade_List
+  @extend %table
+  float: left
+  margin-bottom: 10px
+  max-height: 440px
+
+.trade_head
+  @extend %table-header
+  background-color: #f9fafc
+  span
+    @extend %text-min
+
+.table-list-body
+  @extend %table-body
+  height: 400px
+
+.trade_cell
+  @extend %table-cell
+  height: 30px
+  padding-right: 8px
+
+.time_cell
+  @extend %table-cell
+  color: #2b2b2b
+  font-size: 11px
+  span
+    @extend %text-min
+    color: #999999
+    font-style: normal
+
+.amount_cell
+  @extend %table-cell
+  @extend %text-thin
+
+.price_cell
+  @extend %table-cell
+  @extend %text-thick
+
+.total_cell
+  @extend %table-cell
+  @extend %text-thin
+
+.trade_row
+  @extend %table-row
+  div
+    padding-right: 8px
+

@@ -1,0 +1,26 @@
+@import "~src/assets/css/table"
+@import "~src/assets/css/text"
+
+.price-table
+  @extend %table
+
+.price-table-header
+  @extend %table-header
+
+.price-cell
+  border-right: 1px solid #f1f1f4
+  border-bottom: 1px solid #f1f1f4
+  height: 46px
+  @extend %table-cell
+  @extend %text-thick
+  span
+    @extend %text-thin
+
+.price-table-body
+  height: 600px
+  @extend %table-body
+
+.price-row
+  height: 44px
+  @extend %table-row
+

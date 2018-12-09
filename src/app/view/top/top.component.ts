@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSidenav} from '@angular/material';
 
 @Component({
   selector: 'app-top',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top.component.sass']
 })
 export class TopComponent implements OnInit {
+  @ViewChild('sidenav') sidenav: MatSidenav;
+  reason = '';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
+  open() {
+    this.sidenav.open();
+    document.getElementById('dark-overlay').style.display = 'block';
+  }
 
+  close(){
+    this.sidenav.close();
+    document.getElementById('dark-overlay').style.display = 'none';
+  }
 }

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~src/assets/css/tab"
 
 *
   -webkit-box-sizing: border-box
@@ -14,6 +15,7 @@ html, body
   padding: 0
   height: 100%
   font-size: 14px
+  background-color: #e9ecf1
 
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
@@ -24,3 +26,24 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
 
 div
   font-size: 16px
+
+
+.container
+  width: 100%
+
+.primary-tab
+  @extend %normal-tab
+
+.tab-active
+  @extend %active-tab
+
+-webkit-scrollbar
+  width: 8px
+
+-webkit-scrollbar-track
+  background: #f1f1f1
+-webkit-scrollbar-thumb
+  border-radius: inherit
+  background: #888
+-webkit-scrollbar-thumb:hover
+  background: #555

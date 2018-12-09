@@ -1,0 +1,102 @@
+<!--
+<mat-tab-group>
+  <mat-tab label="체결">
+    Content 1
+  </mat-tab>
+  <mat-tab label="일별">
+    Content 2
+  </mat-tab>
+</mat-tab-group>
+-->
+<div id="trade_List" fxFlex="column">
+  <div fxLayout="row" fxFlexAlign="center">
+    <div [className]="timeList ? 'tab-active' : 'primary-tab'" fxFlex="1 1 100%" fxLayout="column"
+    (click)="toTime()">
+      <span fxFlexAlign="center">
+        체결
+      </span>
+    </div>
+    <div [className]="!timeList ? 'tab-active' : 'primary-tab'" fxFlex="1 1 100%" fxLayout="column"
+    (click)="toDay()">
+      <span>일별</span>
+    </div>
+  </div>
+
+  <div *ngIf="timeList" style="display: table; width: 100%" >
+    <div class="trade_head" fxLayout="row">
+      <div class="trade_cell" fxFlex="1 1 15" fxLayout="column">
+        <span>체결시간</span>
+      </div>
+      <div class="trade_cell" fxFlex="1 1 25" fxLayout="column">
+        <span>체결가격</span>
+      </div>
+      <div class="trade_cell" fxFlex="1 1 30" fxLayout="column">
+        <span>체결량(BTC)</span>
+      </div>
+      <div class="trade_cell" fxFlex="1 1 30" fxLayout="column">
+        <span>체결금액(KRW)</span>
+      </div>
+    </div>
+    <ng-scrollbar #scrollable
+                  thumbClass="custom-scrollbars">
+      <div class="table-list-body">
+        <div  *ngFor="let time of timeTradeList; let i = index" style="height: 32px"
+              class="trade_row" [style.background-color]="i % 2 === 0 ? 'white': '#f9fafc'">
+          <div class="time_cell" fxFlex="1 1 15" fxLayout="column">
+            {{time.tradeDate}}
+            <span>{{time.tradeTimeKst.substr(0, 5)}}</span>
+          </div>
+          <div class="price_cell" [style.color]="time.change === 'RISE' ? 'red' : ''
+      || time.change === 'EVEN' ? 'black' : ''||
+      time.change === 'FALL' ? 'blue' : ''" fxFlex="1 1 25" fxLayout="column">
+            {{time.tradePrice}}
+          </div>
+          <div class="amount_cell" fxFlex="1 1 30" fxLayout="column">
+            {{time.tradeVolume | number:'1.7-7'}}
+          </div>
+          <div class="total_cell" fxFlex="1 1 30" fxLayout="column">
+            {{time.tradeVolume * time.tradePrice | dot}}
+          </div>
+        </div>
+      </div>
+    </ng-scrollbar>
+  </div>
+
+  <div *ngIf="!timeList" style="display: table; width: 100%">
+    <div class="trade_head" fxLayout="row">
+      <div class="trade_cell" fxFlex="1 1 15" fxLayout="column">
+        <span>일자</span>
+      </div>
+      <div class="trade_cell" fxFlex="1 1 25" fxLayout="column">
+        <span>종가(KRW)</span>
+      </div>
+      <div class="trade_cell" fxFlex="1 1 30" fxLayout="column">
+        <span>전일대비</span>
+      </div>
+      <div class="trade_cell" fxFlex="1 1 30" fxLayout="column">
+        <span>체결금액(KRW)</span>
+      </div>
+    </div>
+    <ng-scrollbar #scrollable
+                  thumbClass="custom-scrollbars">
+      <div *ngFor="let day of dayTradeList; let i = index" style="height: 32px"
+           class="trade_row" [style.background-color]="i % 2 === 0 ? 'white': '#f9fafc'" fxLayout="row">
+        <div class="time_cell" fxFlex="1 1 15" fxLayout="column">
+          {{day.tradeDate}}
+        </div>
+        <div class="price_cell" [style.color]="day.change === 'FALL' ? 'blue' : 'red'"
+             fxFlex="1 1 25" fxLayout="column">
+          {{day.tradePrice}}
+        </div>
+        <div class="amount_cell" [style.color]="day.change === 'FALL' ? 'blue' : 'red'"
+             fxFlex="1 1 30" fxLayout="column">
+          {{(day.prevClosingPrice - day.tradePrice) / day.tradePrice * 100 | number: '1.1-2'}}%
+        </div>
+        <div class="total_cell" fxFlex="1 1 30" fxLayout="column">
+          {{day.accTradeVolume | dot}}
+        </div>
+      </div>
+    </ng-scrollbar>
+
+  </div>
+</div>

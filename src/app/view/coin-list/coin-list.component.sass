@@ -1,0 +1,61 @@
+@import "~src/assets/css/table"
+@import "~src/assets/css/text"
+@import "~src/assets/css/tab"
+
+#side-list
+  min-width: 400px
+  max-height: 690px
+  background-color: white
+  margin-top: 12px
+  .primary-tab, .tab-active
+    font-size: 14px
+
+.side-header
+  text-align: center
+  padding: 8px 9px 8px 14px
+
+#coin-list-table
+  @extend %table
+  width: 100%
+
+#coin-list-header
+  @extend %table-header
+  height: 30px
+
+.coin-list-head
+  @extend %table-cell
+
+.coin-list-body
+  @extend %table-body
+  height: 590px
+
+.coin-list-row
+  @extend %table-row
+  height: 44px
+  border-top: 1px solid #f1f1f4
+  cursor: pointer
+  &:hover
+    background-color: #f9fafc
+.coin-row-active
+  pointer-events: none
+
+.coin-name-cell
+  @extend %table-cell
+  @extend %text-thick
+  span
+    @extend %text-thin
+    font-size: 11px
+    font-style: normal
+.coin-price-cell
+  @extend %table-cell
+  @extend %text-thick
+.coin-change-cell
+  @extend %table-cell
+  @extend %text-thin
+  font-style: normal
+.coin-total-cell
+  font-style: normal
+  @extend %table-cell
+  @extend %text-thin
+
+

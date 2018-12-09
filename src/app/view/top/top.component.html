@@ -1,16 +1,130 @@
-<div id="top_head" fxLayout="row" fxLayoutAlign= "space-between center">
-  <div fxFlexAlign="center" fxLayoutGap="40px">
-    <span routerLink="home">
-    Coink
-    </span>
-    <a routerLink="/exchange">거래소</a>
+<!--
+<mat-toolbar id="top_head" fxLayout="row" fxLayoutAlign= "space-between center">
+  <mat-toolbar-row fxFlexAlign="center" fxLayoutGap="40px">
+    <a routerLink="">Coink</a>
+    <a routerLinkActive="action" routerLink="exchange/CRIX.UPBIT.KRW-BTC">거래소</a>
     <a>입출금</a>
     <a>투자내역</a>
     <a>코인동향</a>
     <a>고객센터</a>
-  </div>
-  <div fxLayoutGap="30px">
+  </mat-toolbar-row>
+  <mat-toolbar-row fxLayoutGap="30px">
     <a>로그인</a>
     <a>회원가입</a>
+
+    <mat-sidenav-container style="z-index: 1000; width: 500px">
+      <mat-sidenav #sidenav mode="over" [(opened)]="opened" (opened)="events.push('open!')"
+                   (closed)="events.push('close!')" position="end" style="background-color: greenyellow">
+        Sidenav content
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
+        <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
+&lt;!&ndash;    <button mat-button [matMenuTriggerFor]="menu" style="background-color: transparent">
+
+    </button>&ndash;&gt;
+&lt;!&ndash;    <mat-menu #menu="matMenu">
+      <button mat-menu-item>거래소</button>
+      <button mat-menu-item>입출금</button>
+      <button mat-menu-item>투자내역</button>
+      <button mat-menu-item>코인동향</button>
+      <button mat-menu-item>고객센터</button>
+      <button mat-menu-item>로그인</button>
+      <button mat-menu-item>회원가입</button>
+    </mat-menu>&ndash;&gt;
+  </mat-toolbar-row>
+</mat-toolbar>
+-->
+
+
+
+
+<div id="top_head" fxLayout="row" fxLayoutAlign= "space-between center">
+  <div fxFlexAlign="center" fxLayoutGap="40px">
+    <a routerLink="" style="display: unset">Coink</a>
+    <a routerLinkActive="action" routerLink="exchange/CRIX.UPBIT.KRW-BTC">거래소</a>
+    <a>입출금</a>
+    <a>투자내역</a>
+    <a>코인동향</a>
+    <a (click)="close()">고객센터</a>
+  </div>
+  <div fxLayoutGap="30px" fxLayout="row" fxFlexAlign="center">
+    <a>로그인</a>
+    <a>회원가입</a>
+    <mat-sidenav-container class="side-container" position="end" style="background-color: white;">
+<!--      <mat-sidenav style="background-color: white; height: 10000px; z-index: 10000 !important;
+      position: fixed" #sidenav mode="over" [(opened)]="opened"  position="end">
+        <div class="side-content" style="margin-top: 60px">
+          <span>거래소</span>
+        </div>
+        <div class="side-content" style="margin-top: 60px">
+          <span>입출금</span>
+        </div>
+        <div class="side-content" style="margin-top: 60px">
+          <span>투자내역</span>
+        </div>
+        <div class="side-content" style="margin-top: 60px">
+          <span>코인동향</span>
+        </div>
+        <div class="side-content" style="margin-top: 60px">
+          <span>고객센터</span>
+        </div>
+        <div class="side-content" style="margin-top: 60px">
+        <span>로그인</span>
+        </div>
+        <div class="side-content" style="margin-top: 60px">
+          <span>회원가입</span>
+        </div>
+      </mat-sidenav>-->
+
+      <mat-sidenav-content position="end" style="overflow: hidden; background-color: #2b2b2b;" fxShow.sm="false"  fxShow.gt-md="false" fxShow="true">
+        <button style="background: #2b2b2b; color: white; overflow: hidden; border-radius: 0;"
+                mat-button (click)="open()"
+                fxShow fxHide.xs="false" fxHide.lg="true">
+          <mat-icon>
+          menu
+        </mat-icon></button>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+
   </div>
 </div>
+
+
+<mat-sidenav-container>
+  <mat-sidenav style="background-color: white; height: 10000px; z-index: 997 !important;
+      position: fixed" #sidenav mode="over" [(opened)]="opened"  position="end">
+    <div style="margin-top: 60px">
+
+    </div>
+    <div class="side-content" >
+      <span>거래소</span>
+    </div>
+    <div class="side-content">
+      <span>입출금</span>
+    </div>
+    <div class="side-content">
+      <span>투자내역</span>
+    </div>
+    <div class="side-content">
+      <span>코인동향</span>
+    </div>
+    <div class="side-content">
+      <span>고객센터</span>
+    </div>
+    <div class="side-content">
+      <span>로그인</span>
+    </div>
+    <div class="side-content">
+      <span>회원가입</span>
+    </div>
+  </mat-sidenav>
+  <div id="dark-overlay" class="dark-overlay" (click)="close()">
+
+  </div>
+</mat-sidenav-container>
+
