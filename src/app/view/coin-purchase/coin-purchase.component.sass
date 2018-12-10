@@ -10,11 +10,9 @@
   width: 490px
   height: 300px
   background-color: white
-  margin-top: 12px
-  @media screen and (min-width: 501px) and (max-width: 900px)
+  @media screen and (max-width: 1279px)
     display: none
-  @media screen and (max-width: 500px)
-    display: none
+
 
 .purchase-table
   @extend %table
@@ -23,7 +21,6 @@
 
 .purchase-row
   @extend %table-row
-  height: 35px
   span
     @extend %text-min
 
@@ -31,6 +28,7 @@
   @extend %table-cell
   @extend %text-thick
   width: 20%
+  font-size: 20px
   span
     @extend %text-min
 .purchase-right-cell
@@ -43,13 +41,16 @@
 
 #signin-button
   @extend %button-primary
+  color: white
   a
     @extend %button-inside
 #login-button
   @extend %button-darker
   a
   @extend %button-inside
-  margin-left: 12px
 
 .purchase-log
   height: 100%
+
+button
+  height: 40px

@@ -1,4 +1,5 @@
 export class CoinListData {
+  baseCurrencyCode: string;
   code: string;
   koreanName: string;
   pair: string;

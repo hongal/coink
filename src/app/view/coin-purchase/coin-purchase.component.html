@@ -1,74 +1,62 @@
-<div fxLayout="column" fxLayoutGap="12px">
+<div fxLayout="column" fxLayoutGap="12px" fxFlex="1 1 100">
   <!--구매창-->
-  <div style="background-color: white" fxFlex="1 1 40">
-    <div fxLayout="row" >
-      <div [className]="buyTab === 1 ? 'tab-active' : 'primary-tab'"
-           fxFlex="50" (click)="buyTabChange(1)">
-        <span>매수</span>
-      </div>
-      <div [className]="buyTab === 2 ? 'tab-active' : 'primary-tab'"
-           fxFlex="50" (click)="buyTabChange(2)">
-        <span>매도</span>
-      </div>
-      <div [className]="buyTab === 3 ? 'tab-active' : 'primary-tab'"
-           fxFlex="50" (click)="buyTabChange(3)">
-        <span>거래내역</span>
-      </div>
-    </div>
-    <!--매수-->
+  <div style="background-color: white" fxFlex="1 1 100">
+    <mat-tab-group animationDuration="0ms" mat-stretch-tabs (selectedTabChange)="onTabClick($event)">
+      <mat-tab label="매수"></mat-tab>
+      <mat-tab label="매도"></mat-tab>
+      <mat-tab label="거래내역"></mat-tab>
+    </mat-tab-group>
+
     <div class="purchase-container" *ngIf="buyTab === 1 || buyTab === 2"
          fxLayout="column" fxLayoutGap="12px">
-      <h2>{{titleText}}</h2>
-      <div class="purchase-table">
-        <div class="purchase-row" fxLayout="row">
-          <div class="purchase-left-cell" fxLayout="column">
-            주문가능
-          </div>
-          <div class="purchase-right-cell" fxLayout="column">
-
-          </div>
+<!--      <h3>{{titleText}}</h3>-->
+      <div class="purchase-row" fxLayout="row">
+        <div class="purchase-left-cell" fxLayout="column">
+          주문가능
         </div>
-        <div class="purchase-row" fxLayout="row">
-          <div class="purchase-left-cell" fxLayout="column">
-            가격
-            <span>(KRW)</span>
-          </div>
-          <div class="purchase-right-cell" fxLayout="column"></div>
+        <div class="purchase-right-cell" fxLayout="column">
+          <mat-form-field>
+            <mat-label></mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
         </div>
-        <div class="purchase-row" fxLayout="row">
-          <div class="purchase-left-cell" fxLayout="column">
-            수량
-            <span>(BTC)</span>
-          </div>
-          <div class="purchase-right-cell" fxLayout="column"></div>
+      </div>
+      <div class="purchase-row" fxLayout="row">
+        <div fxLayout="column" fxFlex="1 1 100">
+          <mat-form-field>
+            <mat-label>가격</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
         </div>
-        <div class="purchase-row" fxLayout="row" style="background-color: #f4f5f8">
-          <div class="purchase-left-cell" fxLayout="column">
-            <h2>
-              주문총액
-            </h2>
-          </div>
-          <div class="purchase-right-cell" fxLayout="column">
-            <input>
-          </div>
+      </div>
+      <div class="purchase-row" fxLayout="row">
+        <div  fxLayout="column" fxFlex="1 1 100">
+          <mat-form-field>
+            <mat-label>수량</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
         </div>
-        <div class="purchase-row" fxLayout="row">
-          <div class="purchase-left-cell" fxLayout="column">
-          </div>
-          <div class="purchase-right-cell" fxLayout="column">
-           <span >
-            · 최소주문금액: 1000 KRW· 수수료(부가세 포함): 0.05%
-           </span>
-          </div>
+      </div>
+      <div class="purchase-row" fxLayout="row" ><!-- style="background-color: #f4f5f8" >-->
+        <div  fxLayout="column" fxFlex="1 1 100">
+          <mat-form-field>
+            <mat-label>주문총액</mat-label>
+            <input matInput placeholder="">
+          </mat-form-field>
         </div>
-        <div class="purchase-row" fxLayout="row" fxLayoutGap="12px">
-          <div id="signin-button" class="purchase-left-cell" fxLayout="column">
-            <a>회원가입</a>
-          </div>
-          <div id="login-button" class="purchase-right-cell" fxLayout="column">
-            <a>로그인</a>
-          </div>
+      </div>
+      <div class="purchase-row" fxLayout="row">
+        <div class="purchase-left-cell" fxLayout="column">
         </div>
+        <span style="align-self: center">· 최소주문금액: 1000 KRW· 수수료(부가세 포함): 0.05%</span>
+      </div>
+      <div class="purchase-row" fxLayout="column" fxLayoutGap="8px" >
+        <button mat-button id="signin-button" fxFlex="1 1 100">
+          회원가입
+        </button>
+        <button mat-button id="login-button" fxFlex="1 1 100">
+          로그인
+        </button>
       </div>
     </div>
     <!--거래내역-->
@@ -81,8 +69,11 @@
     </div>
   </div>
 
-  <!--시세표-->
-  <div id="purchase-chart" class="purchase-container" fxFlex="1 1 60" fxHide>
+<!--  &lt;!&ndash;시세표&ndash;&gt;
+  <div id="purchase-chart" class="purchase-container" fxFlex="1 1 50">
+    <div>
+      시세표
+    </div>
 
-  </div>
+  </div>-->
 </div>

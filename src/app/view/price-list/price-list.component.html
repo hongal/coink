@@ -1,5 +1,5 @@
 <!--//호가 탭-->
-<div fxLayout="column" >
+<div fxLayout="column" id="price-list">
   <div fxLayout="row" style="background-color: white">
     <div [className]="priceTab === 1 ? 'tab-active' : 'primary-tab'"
          fxFlex="50" (click)="priceTabChange(1)">
@@ -34,21 +34,25 @@
           <span>(KRW)</span>
         </div>
       </div>
-      <ng-scrollbar #scrollable
-                    thumbClass="custom-scrollbars">
-        <div class="price-table-body" fxLayout="column" >
+      <div class="price-table-body" fxLayout="column" >
+        <ng-scrollbar #scrollable thumbClass="custom-scrollbars">
           <div class="price-row" *ngFor="let price of priceList" fxLayout="row">
             <div class="price-cell"  fxFlex="1 1 40" fxLayout="column">
-              {{price.tradePrice}}
+              <span>
+                {{price.tradePrice}}
+              </span>
             </div>
             <div class="price-cell"  fxFlex="1 1 20" fxLayout="column">
-              {{(price.prevClosingPrice - price.tradePrice) / price.tradePrice * 100 | number: '1.1-2'}}%
+              <span>
+                {{(price.prevClosingPrice - price.tradePrice) / price.tradePrice * 100 | number: '1.1-2'}}%
+              </span>
             </div>
             <div class="price-cell"  fxFlex="1 1 20" fxLayout="column"></div>
             <div class="price-cell"  fxFlex="1 1 20" fxLayout="column"></div>
           </div>
-        </div>
-      </ng-scrollbar>
+        </ng-scrollbar>
+      </div>
+
     </div>
   </div>
   <!--호가주문-->

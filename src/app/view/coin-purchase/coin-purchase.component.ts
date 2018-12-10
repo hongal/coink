@@ -17,8 +17,25 @@ export class CoinPurchaseComponent implements OnInit {
 
   ngOnInit() {
   }
+  onTabClick(event){
+    console.log(event);
+    switch (event.index){
+      case 0:
+        this.buyTab = event.index + 1;
+        this.titleText = '매수';
+        break
+      case 1:
+        this.buyTab = event.index + 1;
+        this.titleText = '매도';
+        break;
+      case 2:
+        this.buyTab = event.index + 1;
+        this.titleText = '거래내역';
+        break
+    }
+  }
 
-  buyTabChange(position: number){
+/*  buyTabChange(position: number){
     if(position !== this.buyTab){
       this.buyTab = position;
 
@@ -34,9 +51,9 @@ export class CoinPurchaseComponent implements OnInit {
           break;
       }
     }
-   
-  }
-  
-  
+
+  }*/
+
+
 
 }

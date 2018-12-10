@@ -11,8 +11,16 @@ import { SigninComponent } from './page/signin/signin.component';
 import { TopComponent } from './view/top/top.component';
 import { BottomComponent } from './view/bottom/bottom.component';
 import {FormsModule} from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule, MatIconModule, MatMenuModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
-import {FlexModule} from '@angular/flex-layout';
+import {
+  MatButtonModule, MatCardModule,
+  MatCheckboxModule, MatDividerModule,
+  MatIconModule, MatInputModule, MatListModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatTabsModule,
+  MatToolbarModule
+} from '@angular/material';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { LeftComponent } from './view/left/left.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -25,6 +33,7 @@ import { CoinChartComponent } from './view/coin-chart/coin-chart.component';
 import { PriceListComponent } from './view/price-list/price-list.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import {NgScrollbarModule} from 'ngx-scrollbar';
+import {DataService} from './data.service';
 
 @NgModule({
   declarations: [
@@ -51,17 +60,23 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    FlexLayoutModule,
     FlexModule,
+    MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatTabsModule,
     MatIconModule,
+    MatListModule,
+    MatCardModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatDividerModule,
     HttpClientModule,
     NgScrollbarModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,77 +1,93 @@
-<div id="side-list"  fxFlex.lt-sm = "1 1 100" fxFlex.sm = "1 1 100">
-  <!--리스트 탭-->
-  <div fxLayout="column">
-    <div fxLayout="row" class="side-header">
-      <div fxFlex="1 1 70" fxLayout="row">
-        <input fxFlex="1 1 80">
-        <button fxFlex="1 1 20">
-          검색
-        </button>
-      </div>
-      <div fxFlex="1 1 30">
-        <a>관심코인</a>
-      </div>
-    </div>
-    <div fxLayout="row">
-      <div [className]="listType === 'KRW' ? 'tab-active' : 'primary-tab'"
-           fxFlex="1 1 20" (click)="changeList('KRW')">
-        원화거래</div>
-      <div [className]="listType === 'BTC' ? 'tab-active' : 'primary-tab'"
-           fxFlex="1 1 20" (click)="changeList('BTC')">
-        BTC</div>
-      <div [className]="listType === 'ETH' ? 'tab-active' : 'primary-tab'"
-           fxFlex="1 1 20" (click)="changeList('ETH')">
-        ETH</div>
-      <div [className]="listType === 'USDT' ? 'tab-active' : 'primary-tab'"
-           fxFlex="1 1 20" (click)="changeList('USDT')">
-        USDT</div>
-      <div [className]="listType === 'MyCoin' ? 'tab-active' : 'primary-tab'"
-           fxFlex="1 1 20" (click)="changeList('MyCoin')">
-        보유코인</div>
-    </div>
-    <div id="coin-list-header" style="height: 30px" fxLayout="row">
-      <div class="coin-list-head" fxFlex="1 1 40">
-        <span>한글명</span>
-      </div>
-      <div class="coin-list-head" fxFlex="1 1 20">
-        <span>현재가</span>
-      </div>
-      <div class="coin-list-head" fxFlex="1 1 20">
-        <span>전일대비</span>
-      </div>
-      <div class="coin-list-head" fxFlex="1 1 20">
-        <span>거래대금</span>
-      </div>
+<div fxLayout="row" fxLayoutAlign="center" style="background-color: white; margin-top: 12px" >
+  <button mat-button id="coin-open-button" fxShow.gt-md="false" fxShow="true"
+          [style.display]="!coinOpened ? 'block' : 'none'" (click)="moveCoin(true)" style="display: none;">
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+  <button mat-button id="coin-close-button"
+          fxShow.gt-md="false" fxShow="true" [style.display]="coinOpened
+          && 'fxShow.gt-md'===false ? 'block' : 'none' "  (click)="moveCoin(false)">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+  </button>
+</div>
 
+<div id="side-list" fxLayout="column">
+  <!--리스트 탭-->
+  <div [style.display]="coinOpened ? 'block' : 'none'">
+    <div fxLayout="column" id="coin-list-container" >
+      <div fxLayout="row" class="side-header">
+        <div fxFlex="1 1 100" fxLayout="row">
+          <mat-form-field class="example-full-width" fxFlex="1 1 80">
+            <input matInput placeholder="">
+          </mat-form-field>
+          <mat-icon style="height: 100%;" fxFlex="1 1 20">
+            search
+          </mat-icon>
+        </div>
+        <!--      <div fxFlex="1 1 30">
+                <a>관심코인</a>
+              </div>-->
+      </div>
+      <div fxLayout="row">
+        <div [className]="listType === 'KRW' ? 'tab-active' : 'primary-tab'"
+             fxFlex="1 1 20" (click)="changeList('KRW')">
+          원화거래</div>
+        <div [className]="listType === 'BTC' ? 'tab-active' : 'primary-tab'"
+             fxFlex="1 1 20" (click)="changeList('BTC')">
+          BTC</div>
+        <div [className]="listType === 'ETH' ? 'tab-active' : 'primary-tab'"
+             fxFlex="1 1 20" (click)="changeList('ETH')">
+          ETH</div>
+        <div [className]="listType === 'USDT' ? 'tab-active' : 'primary-tab'"
+             fxFlex="1 1 20" (click)="changeList('USDT')">
+          USDT</div>
+        <div [className]="listType === 'MyCoin' ? 'tab-active' : 'primary-tab'"
+             fxFlex="1 1 20" (click)="changeList('MyCoin')">
+          보유코인</div>
+      </div>
+      <div id="coin-list-header"  fxLayout="row">
+        <div class="coin-list-head" fxFlex="1 1 40">
+          <span>한글명</span>
+        </div>
+        <div class="coin-list-head" fxFlex="1 1 20">
+          <span>현재가</span>
+        </div>
+        <div class="coin-list-head" fxFlex="1 1 20">
+          <span>전일대비</span>
+        </div>
+        <div class="coin-list-head" fxFlex="1 1 20">
+          <span>거래대금</span>
+        </div>
+
+      </div>
     </div>
-  </div>
-  <div id="coin-list-table" fxLayout="column" >
-    <ng-scrollbar #scrollable
-                  thumbClass="custom-scrollbars">
-      <div class="coin-list-body" >
-        <div *ngFor="let coin of insertList" class="coin-list-row" (click)="changeData(coin.code)"
-             routerLink="/exchange/{{coin.code}}" routerLinkActive="coin-row-active" fxLayout="row">
-          <div class="coin-name-cell" fxFlex="1 1 40" fxLayout="column">
-            {{coin.koreanName}}
-            <span>{{coin.pair}}</span>
-          </div>
-          <div class="coin-price-cell" fxFlex="1 1 20" fxLayout="column">
-            <span>50000</span>
-          </div>
-          <div class="coin-change-cell" fxFlex="1 1 20" fxLayout="column">
-            <span>5%</span>
-          </div>
-          <div class="coin-total-cell" fxFlex="1 1 20" fxLayout="column">
-            <span>454</span>
+    <div id="coin-list-table" fxLayout="column" >
+      <ng-scrollbar #scrollable
+                    thumbClass="custom-scrollbars">
+        <div class="coin-list-body" (click.lt-lg) = hideView()>
+          <div *ngFor="let coin of insertList" class="coin-list-row" (click)="changeData(coin.localName, coin.baseCurrencyCode)"
+               routerLink="/exchange/{{coin.code}}" routerLinkActive="coin-row-active" fxLayout="row">
+            <div class="coin-name-cell" fxFlex="1 1 40"  fxLayout="column" >
+              {{coin.koreanName}}
+              <span>{{coin.pair}}</span>
+            </div>
+            <div class="coin-price-cell" fxFlex="1 1 20" fxLayout="row">
+              <span fxFlexAlign="center">50000</span>
+            </div>
+            <div class="coin-change-cell" fxFlex="1 1 20" fxLayout="row">
+              <span fxFlexAlign="center">5%</span>
+            </div>
+            <div class="coin-total-cell" fxFlex="1 1 20" fxLayout="row">
+              <span fxFlexAlign="center">454</span>
+            </div>
           </div>
         </div>
-      </div>
-    </ng-scrollbar>
+      </ng-scrollbar>
 
 
+    </div>
   </div>
+
   <div>
 
   </div>
-
 </div>

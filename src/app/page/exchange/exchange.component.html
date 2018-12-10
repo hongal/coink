@@ -1,34 +1,21 @@
-<div class="container" fxLayout="row" fxLayout.lt-sm = "column wrap" fxLayout.sm = "column wrap"
-     style="margin-top: 60px" fxLayoutGap="12px">
+<div fxLayout="column" fxLayoutGap="12px" style="margin-top: 64px">
+  <div class="container" fxLayout="row" fxLayout.lt-lg = "column-reverse wrap"
+       style="margin-top: 60px" fxLayoutGap="12px">
 
-  <div fxLayout="column" fxLayoutGap="12px" id="main-container" fxFlex="1 1 85">
-    <div class="chart">
+    <div fxLayout="column" fxLayoutGap="12px" id="main-container" fxFlex="1 1 85">
+      <div class="chart">
+      </div>
+      <div fxLayout="row" fxLayout.lt-lg = "column wrap"
+           fxLayoutGap="8px">
+        <app-price-list fxFlex="1 1 50"
+                        [priceList] = "priceList"></app-price-list>
+        <!--호가정보-->
+        <app-coin-purchase fxFlex="1 1 50"></app-coin-purchase>
+      </div>
+      <app-trade-list   [dayTradeList] = "dayTradeList" [timeTradeList] = "timeTradeList"></app-trade-list>
+      <!--코인 리스트-->
     </div>
-    <div fxLayout="row" fxLayout.lt-sm = "column wrap" fxLayout.sm = "column wrap"
-         fxLayoutGap="8px">
-      <app-price-list fxFlex="1 1 50" fxFlex.lt-sm="1 1 100" fxFlex.sm="1 1 100"
-                      [priceList] = "priceList"></app-price-list>
-      <!--호가정보-->
-      <app-coin-purchase fxFlex="1 1 50" fxFlex.lt-sm="1 1 100" fxFlex.sm="1 1 100"></app-coin-purchase>
-    </div>
-    <!--코인 리스트-->
-
+    <app-coin-list fxFlex="1 1 15"></app-coin-list>
   </div>
 
-  <app-coin-list fxFlex="1 1 15"></app-coin-list>
 </div>
-<app-trade-list   [dayTradeList] = "dayTradeList" [timeTradeList] = "timeTradeList"></app-trade-list>
-
-<!--
-<div fxLayout="column" fxLayoutGap="12px">
-  <div class="chart">
-  </div>
-  <div fxLayout="row" fxLayout.lt-sm = "column wrap" fxLayout.sm = "column wrap"
-       fxLayoutGap="8px">
-    <app-price-list fxFlex="1 1 50" [priceList] = "priceList"></app-price-list>
-    &lt;!&ndash;호가정보&ndash;&gt;
-    <app-coin-purchase fxFlex="1 1 50"></app-coin-purchase>
-  </div>
-  &lt;!&ndash;코인 리스트&ndash;&gt;
-  <app-trade-list   [dayTradeList] = "dayTradeList" [timeTradeList] = "timeTradeList"></app-trade-list>
-</div>-->

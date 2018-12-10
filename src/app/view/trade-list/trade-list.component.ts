@@ -3,6 +3,7 @@ import {AppService} from '../../app.service';
 import {DayTradeData} from '../../data/day-trade-data';
 import {TimeTradeData} from '../../data/time-trade-data';
 import {ActivatedRoute} from '@angular/router';
+import {DataService} from '../../data.service';
 
 @Component({
   selector: 'app-trade-list',
@@ -16,22 +17,19 @@ export class TradeListComponent implements OnInit {
   timeTradeList: TimeTradeData[];
   dayList: boolean;
   timeList: boolean;
-  constructor(private appService: AppService, private route: ActivatedRoute) {
+  constructor(private appService: AppService, private data: DataService) {
     this.dayList = false;
     this.timeList = true;
   }
 
   ngOnInit() {
+
   }
 
-/*  getData(code: string){
-    this.appService.getTradeResult(code)
-      .subscribe(data => {
-        console.log(data);
-        this.dayTradeList = data[0];
-        this.timeTradeList = data[1];
-      });
-  }*/
+  sendPrice(tradeVolume: string, tradePrice: string, changePrice: string) {
+    let name: string[] = [tradeVolume, tradePrice, changePrice];
+    this.data.changeMessage(name);
+  }
 
   toTime(){
     this.timeList = true;
